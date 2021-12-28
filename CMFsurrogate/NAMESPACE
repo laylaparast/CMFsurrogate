@@ -1,0 +1,6 @@
+importFrom(splines, ns)
+importFrom(MASS, ginv)
+importFrom(stats, dnorm, sd, nlm,glm, binomial, lm)
+
+export("gen.bootstrap.weights", "Kern.FUN", "Kern.FUN.d",
+       "Kern.FUN.M", "pte.estimate.multiple", "resam", "VTM")
