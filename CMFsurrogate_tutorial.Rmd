@@ -1,0 +1,49 @@
+---
+title: "Tutorial for the CMFsurrogate package"
+output:
+  html_document:
+    self_contained: true
+---
+
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(fig.width=7, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=60))
+```
+
+If you are viewing the html version of this tutorial, you can find the R markdown file here: <https://github.com/laylaparast/CMFsurrogate>. It is the file called CMFsurrogate_tutorial.Rmd. In this tutorial, we will go through an example using the primary function in the **CMFsurrogate** package, `pte.estimate.multiple()`. First, install the package from CRAN and load it. 
+
+```{r results = "hide", message=FALSE}
+#install.packages("CMFsurrogate")
+library(CMFsurrogate)
+```
+
+This package uses a calibrated model fusion approach to optimally combine multiple surrogate markers. Specifically, two initial estimates of optimal composite scores of the markers are obtained; the optimal calibrated combination of the two estimated scores is then con-
+structed which ensures both validity of the final combined score and optimality with respect to the proportion of treatment effect explained (PTE) by the final combined score. Details are described in Wang, X., Parast, L., Han, L., Tian, L., & Cai, T. (2023). Robust approach to combining multiple markers to improve surrogacy. Biometrics, 79(2), 788-798, <https://doi.org/10.1111/biom.13677>. 
+
+Let's use the example data provided in the package, `example.data`. The dataset contains 4 surrogate markers (`sob`), the primary outcome (`yob`), and the treatment indicator (`aob`). 
+
+```{r}
+data(example.data)
+names(example.data)
+head(example.data$sob)
+head(example.data$yob)
+head(example.data$aob)
+```
+
+These names map to the arguments within the function. That is, to estimate the proportion of the treatment effect on the primary outcome, `yob`, that is explained by the treatment effect on the four surrogate markers, `sob`, we use the function as follows:
+
+```{r}
+pte.estimate.multiple(sob=example.data$sob, yob=example.data$yob,
+aob=example.data$aob, var = FALSE)
+```
+The dimension of `sob` must be such that the number of rows equals the length of `yob` and the number of columns is greater than 1. The output is the estimated proportion of treatment effect explained (PTE). The code above with `var=FALSE` does not implement standard error estimation. For standard error estimation we set `var=TRUE` and can additionally set the number of bootstrap iterations using `rep`:
+
+```{r}
+pte.estimate.multiple(sob=example.data$sob, yob=example.data$yob,
+aob=example.data$aob, var = TRUE, rep = 100)
+```
+
+Now the output contains the estimated PTE as well as the estimaed standard error. 
+
+That's all for now!
+
+---------
