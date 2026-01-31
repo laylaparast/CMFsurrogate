@@ -16,8 +16,7 @@ If you are viewing the html version of this tutorial, you can find the R markdow
 library(CMFsurrogate)
 ```
 
-This package uses a calibrated model fusion approach to optimally combine multiple surrogate markers. Specifically, two initial estimates of optimal composite scores of the markers are obtained; the optimal calibrated combination of the two estimated scores is then con-
-structed which ensures both validity of the final combined score and optimality with respect to the proportion of treatment effect explained (PTE) by the final combined score. Details are described in Wang, X., Parast, L., Han, L., Tian, L., & Cai, T. (2023). Robust approach to combining multiple markers to improve surrogacy. Biometrics, 79(2), 788-798, <https://doi.org/10.1111/biom.13677>. 
+This package uses a calibrated model fusion approach to optimally combine multiple surrogate markers. Specifically, two initial estimates of optimal composite scores of the markers are obtained; the optimal calibrated combination of the two estimated scores is then constructed which ensures both validity of the final combined score and optimality with respect to the proportion of treatment effect explained (PTE) by the final combined score. Details are described in Wang, X., Parast, L., Han, L., Tian, L., & Cai, T. (2023). Robust approach to combining multiple markers to improve surrogacy. Biometrics, 79(2), 788-798, <https://doi.org/10.1111/biom.13677>. 
 
 Let's use the example data provided in the package, `example.data`. The dataset contains 4 surrogate markers (`sob`), the primary outcome (`yob`), and the treatment indicator (`aob`). 
 
@@ -42,7 +41,7 @@ pte.estimate.multiple(sob=example.data$sob, yob=example.data$yob,
 aob=example.data$aob, var = TRUE, rep = 100)
 ```
 
-Now the output contains the estimated PTE as well as the estimaed standard error. 
+Now the output contains the estimated PTE as well as the estimated standard error. 
 
 That's all for now!
 
